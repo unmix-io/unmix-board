@@ -1,4 +1,4 @@
-# unmix-board app
+# unmix-board
 
 ## Project setup
 ```
