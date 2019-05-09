@@ -62,7 +62,7 @@ export default {
   },
   methods: {
     async fetch() {
-      var runs = await fetch("http://192.168.1.67/runs").then((r) => r.json());
+      var runs = await fetch("http://192.168.1.67:5000/runs").then((r) => r.json());
       
       runs.forEach((r) => {
         r.date = moment(r.name, 'YYYYMMDD-HHmmss');
