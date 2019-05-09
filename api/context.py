@@ -20,9 +20,7 @@ class Context(object):
 
     @staticmethod
     def initialize():
-        Context.base_paths = ["\\\\zhaw.unmix.io\\gpu-server\\home-flurydav\\repos\\unmix-net\\runs",
-                              "\\\\zhaw.unmix.io\\gpu-server\\home-kaufman3\\unmix-net\\runs",
-                              "\\\\zhaw.unmix.io\\gpu-server\\home-muellrap\\unmix-net\\runs"]
+        Context.base_paths = os.environ['UNMIX_BOARD_API_PATHS'].split(";")
         Context.runs = []
         for path in Context.base_paths:
             Context.runs += Context.__search_runs(path)
@@ -30,6 +28,7 @@ class Context(object):
     @staticmethod
     def __search_runs(path):
         runs = []
+        print("Search runs in folder: %s." % path)
         for file in glob.iglob(os.path.join(path, '**', 'configuration.jsonc'), recursive=False):
             runs.append(Run(os.path.dirname(file)))
         return runs
