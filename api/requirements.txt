@@ -2,4 +2,3 @@ flask-restful
 flask_cors
 numpy
 commentjson
-csv
