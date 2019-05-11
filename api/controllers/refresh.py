@@ -17,9 +17,5 @@ from context import Context
 class RefreshController(Resource):
 
     def get(self):
-        Context.reresh()
-        return True, 200
-
-    def post(self):
-        Context.reresh()
+        Context.refresh()
         return True, 200
