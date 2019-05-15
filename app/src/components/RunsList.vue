@@ -16,7 +16,9 @@
       <strong>Configuration:</strong>
       <prism language="javascript">{{selectedRun.configuration}}</prism>
       <strong>Environment:</strong>
-      <prism language="javascript">{{selectedRun.configuration}}</prism>
+      <prism language="javascript">{{selectedRun.environment}}</prism><br>
+      <strong>Log:</strong>
+      <prism language="javascript">{{selectedRun.log}}</prism>
     </b-modal>
   </div>
 </template>

@@ -4,6 +4,7 @@
       <runs-list :runs="runs" />
     </div>
     <div class="middle">
+      <b-btn @click="toggleLegend">Toggle legend</b-btn>
       <b-list-group>
         <b-list-group-item v-b-toggle.loss>
           Loss / val_loss
@@ -22,7 +23,7 @@
         <b-collapse id="accuracy" visible>
           <b-list-group-item>
             <div class="chart-default">
-              <GChart type="LineChart" :data="chartDataAccuracy" :options="chartOptions" />
+              <GChart type="LineChart" :data="chartDataAccuracy" :options="chartOptionsAccuracy" />
             </div>
           </b-list-group-item>
         </b-collapse>
@@ -50,6 +51,28 @@ export default {
       chartData: [],
       chartDataAccuracy: [],
       chartOptions: {
+        chart: {
+          title: 'Loss / validation loss'
+        },
+        height: 650,
+        explorer: {
+          zoomDelta: 1.05
+        },
+        hAxis: {
+          title: 'epochs'
+        },
+        vAxis: {
+          title: 'loss'
+        },
+        chartArea: {
+          left:100,
+          top:100,
+          right:300,
+          bottom:100
+        },
+        legend: { position:'none' }
+      },
+      chartOptionsAccuracy: {
         height: 650,
         explorer: {
           zoomDelta: 1.05
@@ -61,6 +84,15 @@ export default {
     this.fetch();
   },
   methods: {
+    toggleLegend() {
+      if(this.chartOptions.legend.position == 'none') {
+        this.chartOptions.legend.position = 'outer';
+        this.chartOptions.chartArea.right = 300;
+      } else {
+        this.chartOptions.legend.position = 'none';
+        this.chartOptions.chartArea.right = 100;
+      }
+    },
     async fetch() {
       var runs = await fetch("http://192.168.1.67:5000/runs").then((r) => r.json());
       
@@ -73,6 +105,8 @@ export default {
 
       this.runs = runs.filter((r) => r.results != null && r.results.length > 0); // we can't show runs without results
       console.log(runs)
+
+
     }
   },
   watch: {
