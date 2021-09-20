@@ -13,7 +13,7 @@
     "chart.js": "^2.8.0",
     "core-js": "^2.6.5",
     "moment": "^2.24.0",
-    "prismjs": "^1.16.0",
+    "prismjs": "^1.25.0",
     "vue": "^2.6.10",
     "vue-google-charts": "^0.3.2",
     "vue-prism-component": "^1.1.1",
